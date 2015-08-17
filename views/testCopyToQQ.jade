@@ -1,0 +1,30 @@
+//
+   Created by sinoon on 15/8/12.
+
+extends layout
+
+block content
+   .container
+      .row
+         .col-md-12
+            .panel.panel-default
+               .panel-heading
+                  h2 测试新的复制去QQ
+               .panel-body
+                  h4 描述：根据新的样子，显示复制去QQ
+
+                  pre
+                     code.
+                        {
+                           action:"copyToQQ",
+                           copy:"449848282",
+                           title:"复制的标题哦",
+                           content:"QQ号『449848282』已经复制成功，请打开QQ不啦不啦"
+                        }
+                  button.btn.btn-default#test 测试
+block script
+   script.
+      var action = $.os.phone ? "tap" : $.os.tablet ? "tap" : "click";
+      $("#test").on(action, function () {
+         Bridge.copyToQQ("449848282","复制的标题哦","QQ号『449848282』已经复制成功，请打开QQ不啦不啦")
+      })
