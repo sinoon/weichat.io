@@ -25,7 +25,7 @@ module.exports = wechat(wechatConfig,function ( req,res,next ) {
 	console.log(content);
 
 	mailer('shangnan@qwbcg.com','shangnan@qwbcg.com','测试邮件','测试内容', function ( err,info ) {
-		res.reply(info)
+		res.reply(err + ' || ' + info)
 	});
 
 	//ask(content, function ( err,answer ) {

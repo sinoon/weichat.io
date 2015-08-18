@@ -23,6 +23,8 @@ module.exports = function ( form,to,subject,text,callback ) {
 		text:text
 	}, function ( err,info ) {
 
+		console.log(err,info);
+
 		return callback(err,info)
 	})
 };
