@@ -16,7 +16,7 @@ var config = {
 module.exports = wechat(config,function ( req,res,next ) {
 	var message = req.weixin;
 
-	var content = message.content;
+	var content = message.Content;
 
 	console.log(message);
 	console.log(content);
