@@ -21,9 +21,12 @@ module.exports = wechat(config,function ( req,res,next ) {
 	console.log(message);
 	console.log(content);
 
-	request.get(robotUrl,{
-		key:robotKey,
-		info:content
+	request.get({
+		url:robotUrl,
+		qs:{
+			key:robotKey,
+			info:content
+		}
 	}, function ( error,resopnse,body ) {
 		console.log(body);
 		res.reply(body)
