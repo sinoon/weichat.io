@@ -33,7 +33,7 @@ app.use('/interface',inter);
 var config = {
     token:'123abc',
     appid:'wx6ec63f5b355e74fb',
-    encodingAESKey:'5c8b13efd1eb19a37f5a83e130d2a243'
+    encodingAESKey:'encodinAESKey'
 };
 app.use(express.query());
 app.use('/wechat',wechat(config, function ( req,res,next ) {
