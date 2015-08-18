@@ -24,12 +24,12 @@ module.exports = wechat(wechatConfig,function ( req,res,next ) {
 	console.log(message);
 	console.log(content);
 
-	ask(content, function ( err,res ) {
+	ask(content, function ( err,answer ) {
 		if(err){
 			// TODO: Handle error
 		}
 
-		res.reply(res.text)
+		res.reply(answer.text)
 
 	});
 
