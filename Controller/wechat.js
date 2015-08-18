@@ -4,7 +4,6 @@
 
 /**
  * 原始库
- * @type {wechat|exports|module.exports}
  */
 var wechat = require('wechat');
 var request  = require('request');
@@ -13,6 +12,7 @@ var request  = require('request');
  * 自写的方法
  */
 var ask = require('../Utils/ask');
+var mailer = require('../Utils/mailer');
 
 var wechatConfig = require("../Config/wechat");
 
@@ -24,13 +24,17 @@ module.exports = wechat(wechatConfig,function ( req,res,next ) {
 	console.log(message);
 	console.log(content);
 
-	ask(content, function ( err,answer ) {
-		if(err){
-			// TODO: Handle error
-		}
-
-		res.reply(answer.text)
-
+	mailer('shangnan@qwbcg.com','shangnan@qwbcg.com','测试邮件','测试内容', function ( err,info ) {
+		res.reply(info)
 	});
+
+	//ask(content, function ( err,answer ) {
+	//	if(err){
+	//		// TODO: Handle error
+	//	}
+	//
+	//	res.reply(answer.text)
+	//
+	//});
 
 });
