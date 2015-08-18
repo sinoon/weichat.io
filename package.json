@@ -14,9 +14,10 @@
     "jade": "~1.11.0",
     "marked": "^0.3.5",
     "morgan": "~1.6.1",
+    "nodemailer": "^1.4.0",
+    "nodemailer-smtp-transport": "^1.0.3",
     "request": "^2.60.0",
     "serve-favicon": "~2.3.0",
-    "wechat": "^2.0.1",
-    "nodemailer":"^1.4.0"
+    "wechat": "^2.0.1"
   }
 }
