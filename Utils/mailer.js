@@ -4,20 +4,22 @@
 
 var nodemailer = require('nodemailer');
 
+var config = {
+	user:'shangnan@qwbcg.com',
+	pass:'xxsnkkll1218'
+};
+
 var transport = nodemailer.createTransport({
-	use_authentication : true,
-	host : 'smtp.qq.com',
-	port : 25,
-	ssl : true,
+	service:'QQex',
 	auth : {
-		user : "shangnan@qwbcg.com",
-		pass : "xxsnkkll1218"
+		user : config.user,
+		pass : config.pass
 	}
 });
 
 module.exports = function ( form,to,subject,text,callback ) {
 	transport.sendMail({
-		form:form,
+		from:form,
 		to:to,
 		subject:subject,
 		text:text
