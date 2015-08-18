@@ -2,18 +2,21 @@
  * Created by sinoon on 15/8/18.
  */
 
+/**
+ * 原始库
+ * @type {wechat|exports|module.exports}
+ */
 var wechat = require('wechat');
 var request  = require('request');
 
-var robotUrl = 'http://www.tuling123.com/openapi/api';
-var robotKey = '11607077906726b66072dda871205cd6';
+/**
+ * 自写的方法
+ */
+var ask = require('../Utils/ask');
 
-var config = {
-	token:'123abc',
-	appid:'wx6ec63f5b355e74fb'
-};
+var wechatConfig = require("../Config/wechat");
 
-module.exports = wechat(config,function ( req,res,next ) {
+module.exports = wechat(wechatConfig,function ( req,res,next ) {
 	var message = req.weixin;
 
 	var content = message.Content;
@@ -21,16 +24,13 @@ module.exports = wechat(config,function ( req,res,next ) {
 	console.log(message);
 	console.log(content);
 
-	request.get({
-		url:robotUrl,
-		qs:{
-			key:robotKey,
-			info:content
+	ask(content, function ( err,res ) {
+		if(err){
+			// TODO: Handle error
 		}
-	}, function ( error,response,body ) {
-		console.log(body);
-		console.log(response);
-		var resContent = JSON.parse(body);
-		res.reply(resContent.text);
-	})
+
+		res.reply(res.text)
+
+	});
+
 });
