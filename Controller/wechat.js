@@ -30,6 +30,7 @@ module.exports = wechat(config,function ( req,res,next ) {
 	}, function ( error,response,body ) {
 		console.log(body);
 		console.log(response);
-		res.reply(body.text)
+		var resContent = JSON.parse(body);
+		res.reply(resContent.text);
 	})
 });
