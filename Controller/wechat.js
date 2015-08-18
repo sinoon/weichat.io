@@ -27,8 +27,9 @@ module.exports = wechat(config,function ( req,res,next ) {
 			key:robotKey,
 			info:content
 		}
-	}, function ( error,resopnse,body ) {
+	}, function ( error,response,body ) {
 		console.log(body);
-		res.reply(body)
+		console.log(response);
+		res.reply(body.text)
 	})
 });
