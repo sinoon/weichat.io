@@ -18,6 +18,9 @@ module.exports = wechat(config,function ( req,res,next ) {
 
 	var content = message.content;
 
+	console.log(message);
+	console.log(content);
+
 	request.get(robotUrl,{
 		key:robotKey,
 		info:content
