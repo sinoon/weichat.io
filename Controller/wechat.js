@@ -14,6 +14,9 @@ var request  = require('request');
 var ask = require('../Utils/ask');
 var mailer = require('../Utils/mailer');
 
+/**
+ * 配置信息
+ */
 var wechatConfig = require("../Config/wechat");
 
 module.exports = wechat(wechatConfig,function ( req,res,next ) {
@@ -21,20 +24,36 @@ module.exports = wechat(wechatConfig,function ( req,res,next ) {
 
 	var content = message.Content;
 
+	var type = message.MsgType;
+
+	if(type == 'event'){
+		eventHandle(message,req,res);
+		return
+	}
+
 	console.log(message);
 	console.log(content);
 
-	mailer('shangnan@qwbcg.com','shangnan@qwbcg.com','测试邮件','测试内容', function ( err,info ) {
-		res.reply(err + ' || ' + info)
-	});
-
-	//ask(content, function ( err,answer ) {
-	//	if(err){
-	//		// TODO: Handle error
-	//	}
-	//
-	//	res.reply(answer.text)
-	//
+	//mailer('shangnan@qwbcg.com','shangnan@qwbcg.com','测试邮件','测试内容', function ( err,info ) {
+	//	res.reply(err + ' || ' + info)
 	//});
 
+	ask(content, function ( err,answer ) {
+		if(err){
+			// Handle error
+		}
+
+		res.reply(answer.text)
+
+	});
+
 });
+
+function eventHandle(message,req,res){
+	var event = message.MsgType;
+
+	if(event == 'subscribe'){
+		// TODO: 订阅
+		res.reply("欢迎关注，测试微信号")
+	}
+}
