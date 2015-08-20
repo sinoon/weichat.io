@@ -22,6 +22,7 @@
     "wechat": "^2.0.1",
     "express-session":"^1.11.3",
     "connect-redis":"^2.4.1",
-    "ioredis":"^1.7.5"
+    "ioredis":"^1.7.5",
+    "wechat-oauth":"1.1.0"
   }
 }

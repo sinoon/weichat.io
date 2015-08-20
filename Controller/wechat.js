@@ -7,6 +7,7 @@
  */
 var wechat = require('wechat');
 var request  = require('request');
+var OAuth = require('wechat-oauth');
 
 /**
  * 自写的方法
@@ -19,22 +20,23 @@ var mailer = require('../Lib/mailer');
  */
 var wechatConfig = require("../Config/wechat");
 
-module.exports = wechat(wechatConfig,function ( req,res,next ) {
+module.exports.index = wechat(wechatConfig,function ( req,res,next ) {
 	var message = req.weixin;
 
 	var content = message.Content;
 
 	console.log(req.session);
-	var exp = req.wxsession.text.join('');
-	console.log(req);
-	req.wxsession.text = '';
-	res.reply(exp);
+	console.log(req.wxsession);
 
 	var type = message.MsgType;
 
 	if(type == 'event'){
 		eventHandle(message,req,res);
 		return
+	}
+
+	if(content == '授权测试'){
+		return res.reply('/wechat/test')
 	}
 
 	console.log(message);
@@ -54,6 +56,48 @@ module.exports = wechat(wechatConfig,function ( req,res,next ) {
 	});
 
 });
+
+var client = new OAuth(wechatConfig.appid);
+module.exports.goOauth = function ( req,res,next ) {
+	if(!req.session.openid){
+		var url = client.getAuthorizeURL('/wechat/oauth', 'state', 'snsapi_userinfo');
+
+		return res.redirect(url)
+	}
+
+	res.end(req.session.openid)
+
+};
+
+module.exports.oauth = function ( req,res,next ) {
+	if(req.session.openid){
+		return res.redirect('/wechat/test')
+	}
+
+	var code = req.query.code;
+	console.log('code:' + code);
+	res.send(code);
+
+	if(!code){
+		return res.end('没有授权失败 : ' + req.originalUrl)
+	}
+
+	client.getAccessToken(code, function ( err,result ) {
+		var accessToken = result.data.access_token;
+		var openid = result.data.openid;
+		console.log(accessToken);
+		console.log(openid);
+
+		res.send(accessToken);
+		res.send(openid);
+
+		client.getUser(openid, function ( err,result ) {
+			var userInfo = result;
+			console.log(userInfo);
+			res.end(userInfo);
+		})
+	})
+};
 
 function eventHandle(message,req,res){
 	var event = message.MsgType;
