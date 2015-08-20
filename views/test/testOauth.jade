@@ -1,0 +1,22 @@
+//
+   Created by sinoon on 15/8/20.
+
+extends ../layout
+
+block content
+    .container
+        .row
+            .col-md-12
+                h1 测试微信授权
+                .panel
+                    .panel-heading
+                        h2 测试结果
+                    .panel-body
+                        dl.dl-horizontal
+                            dt code:
+                            dd= code
+                            dt accessToken:
+                            dd= accessToken
+                            dt openid
+                            dd= openid
+                        p= userInfo
