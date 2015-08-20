@@ -92,14 +92,17 @@ module.exports.oauth = function ( req,res,next ) {
 		console.log(openid);
 
 		req.session.openid = openid;
-		res.send("一次性的code : " + code);
-		res.send("accessToken : " + accessToken);
-		res.send("openid : " + openid);
+
 
 		client.getUser(openid, function ( err,result ) {
 			var userInfo = result;
 			console.log(userInfo);
-			res.end(userInfo);
+			res.render('/test/testOauth',{
+				code:code,
+				accessToken:accessToken,
+				openid:openid,
+				userInfo:userInfo
+			});
 		})
 	})
 };
