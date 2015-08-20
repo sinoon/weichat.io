@@ -57,7 +57,7 @@ module.exports.index = wechat(wechatConfig,function ( req,res,next ) {
 
 });
 
-var client = new OAuth(wechatConfig.appid);
+var client = new OAuth(wechatConfig.appid,wechatConfig.appsecret);
 module.exports.goOauth = function ( req,res,next ) {
 	if(!req.session.openid){
 		var url = client.getAuthorizeURL('http://weichat.io/wechat/oauth', 'state', 'snsapi_userinfo');
