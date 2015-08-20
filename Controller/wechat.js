@@ -101,7 +101,7 @@ module.exports.oauth = function ( req,res,next ) {
 			}
 			var userInfo = result;
 			console.log(userInfo);
-			res.session.userInfo = userInfo;
+			req.session.userInfo = userInfo;
 			res.render('/test/testOauth',{
 				code:code,
 				accessToken:accessToken,
