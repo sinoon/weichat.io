@@ -25,7 +25,10 @@ module.exports = wechat(wechatConfig,function ( req,res,next ) {
 	var content = message.Content;
 
 	console.log(req.session);
-	console.log(req.wxsession.text);
+	var exp = req.wxsession.text.join('');
+	console.log(req);
+	req.wxsession.text = '';
+	res.reply(exp);
 
 	var type = message.MsgType;
 
