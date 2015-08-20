@@ -86,6 +86,7 @@ module.exports.oauth = function ( req,res,next ) {
 
 
 	client.getAccessToken(code, function ( err,result ) {
+		console.log(result);
 		var accessToken = result.data.access_token;
 		var openid = result.data.openid;
 		console.log(accessToken);

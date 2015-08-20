@@ -7,7 +7,7 @@ var router = express.Router();
 
 var wechatController = require('../Controller/wechat');
 
-router.get('/',wechatController.index);
+router.all('/',wechatController.index);
 
 //var
 
