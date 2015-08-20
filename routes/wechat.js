@@ -12,3 +12,5 @@ router.get('/',wechatController.index);
 //var
 
 router.get('/test', wechatController.goOauth);
+
+module.exports = router;
