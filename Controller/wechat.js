@@ -59,7 +59,7 @@ module.exports.index = wechat(wechatConfig,function ( req,res,next ) {
 
 var client = new OAuth(wechatConfig.appid,wechatConfig.appsecret);
 module.exports.goOauth = function ( req,res,next ) {
-	if(!req.session.openid){
+	if(!req.session.openid || !req.session.userInfo){
 		var url = client.getAuthorizeURL('http://weichat.io/wechat/oauth', 'state', 'snsapi_userinfo');
 
 		console.log("跳转url:" + url);
@@ -67,7 +67,7 @@ module.exports.goOauth = function ( req,res,next ) {
 		return res.redirect(url)
 	}
 
-	res.end(req.session.openid)
+	res.end(req.session.openid + "|" + req.session.userInfo)
 
 };
 
@@ -97,6 +97,7 @@ module.exports.oauth = function ( req,res,next ) {
 		client.getUser(openid, function ( err,result ) {
 			var userInfo = result;
 			console.log(userInfo);
+			res.session.userInfo = userInfo;
 			res.render('/test/testOauth',{
 				code:code,
 				accessToken:accessToken,
