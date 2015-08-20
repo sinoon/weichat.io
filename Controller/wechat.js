@@ -36,7 +36,7 @@ module.exports.index = wechat(wechatConfig,function ( req,res,next ) {
 	}
 
 	if(content == '授权测试'){
-		return res.reply('/wechat/test')
+		return res.reply('http://weichat.io/wechat/test')
 	}
 
 	console.log(message);
