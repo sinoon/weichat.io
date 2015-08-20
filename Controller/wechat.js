@@ -62,6 +62,8 @@ module.exports.goOauth = function ( req,res,next ) {
 	if(!req.session.openid){
 		var url = client.getAuthorizeURL('http://weichat.io/wechat/oauth', 'state', 'snsapi_userinfo');
 
+		console.log("跳转url:" + url);
+
 		return res.redirect(url)
 	}
 
