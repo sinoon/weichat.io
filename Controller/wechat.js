@@ -11,8 +11,8 @@ var request  = require('request');
 /**
  * 自写的方法
  */
-var ask = require('../Utils/ask');
-var mailer = require('../Utils/mailer');
+var ask = require('../Lib/ask');
+var mailer = require('../Lib/mailer');
 
 /**
  * 配置信息

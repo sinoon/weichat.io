@@ -21,4 +21,8 @@ router.get("/testCopyToQQ", function (req,res,next) {
     res.render("testCopyToQQ")
 });
 
+router.get("/testAbsolute", function ( req,res ) {
+	res.render("test/testAbsolute")
+});
+
 module.exports = router;
