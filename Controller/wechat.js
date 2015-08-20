@@ -24,6 +24,8 @@ module.exports = wechat(wechatConfig,function ( req,res,next ) {
 
 	var content = message.Content;
 
+	console.log(req.session);
+
 	var type = message.MsgType;
 
 	if(type == 'event'){

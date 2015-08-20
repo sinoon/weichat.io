@@ -5,11 +5,17 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var wechat = require('./Controller/wechat');
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
+var Redis = require('ioredis');
 
+// 路由
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var test = require('./routes/test');
 var inter = require('./routes/interface');
+
+var redis = new Redis();
 
 var app = express();
 
@@ -24,6 +30,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+var sessionConfig = {
+	client:redis
+};
+app.use(session({
+	store:new RedisStore(sessionConfig),
+	secret:"I love Mao"
+}));
+
+app.use( function ( req,res,next ) {
+	if(!req.session){
+		return next(new Error('oh no'))
+	}
+
+	next()
+});
 
 app.use('/', routes);
 app.use('/users', users);

@@ -19,6 +19,9 @@
     "nodemailer-smtp-transport": "^1.0.3",
     "request": "^2.60.0",
     "serve-favicon": "~2.3.0",
-    "wechat": "^2.0.1"
+    "wechat": "^2.0.1",
+    "express-session":"^1.11.3",
+    "connect-redis":"^2.4.1",
+    "ioredis":"^1.7.5"
   }
 }
