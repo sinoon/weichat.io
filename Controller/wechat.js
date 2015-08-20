@@ -78,7 +78,6 @@ module.exports.oauth = function ( req,res,next ) {
 
 	var code = req.query.code;
 	console.log('code:' + code);
-	res.send(code);
 
 	if(!code){
 		return res.end('没有授权失败 : ' + req.originalUrl)
@@ -93,9 +92,9 @@ module.exports.oauth = function ( req,res,next ) {
 		console.log(openid);
 
 		req.session.openid = openid;
-
-		res.send(accessToken);
-		res.send(openid);
+		res.send("一次性的code : " + code);
+		res.send("accessToken : " + accessToken);
+		res.send("openid : " + openid);
 
 		client.getUser(openid, function ( err,result ) {
 			var userInfo = result;
