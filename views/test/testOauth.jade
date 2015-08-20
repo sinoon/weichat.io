@@ -19,4 +19,30 @@ block content
                             dd= accessToken
                             dt openid
                             dd= openid
-                        p= userInfo
+                        hr
+                        h4 用户信息
+                            dl.dl-horizontal
+                                dt openid
+                                dd= userInfo.openid
+
+                                dt nickname
+                                dd= userInfo.nickname
+
+                                dt sex
+                                dd= userInfo.sex
+
+                                dt language
+                                dd= userInfo.language
+
+                                dt city
+                                dd= userInfo.city
+
+                                dt province
+                                dd= userInfo.province
+
+                                dt country
+                                dd= userInfo.country
+
+                                dt 头像
+                                dd
+                                    img(src=userInfo.headimgurl)
