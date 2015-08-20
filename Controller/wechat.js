@@ -67,9 +67,10 @@ module.exports.goOauth = function ( req,res,next ) {
 		return res.redirect(url)
 	}
 
+	var openid = req.session.openid;
+	var userInfo = req.session.userInfo;
+
 	res.render('test/testOauth',{
-		code:code,
-		accessToken:accessToken,
 		openid:openid,
 		userInfo:userInfo
 	});
