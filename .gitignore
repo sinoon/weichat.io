@@ -4,3 +4,4 @@
 #module
 node_modules/
 Test
+!views/test
