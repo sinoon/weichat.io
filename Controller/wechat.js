@@ -72,7 +72,7 @@ module.exports.goOauth = function ( req,res,next ) {
 };
 
 module.exports.oauth = function ( req,res,next ) {
-	if(req.session.openid){
+	if(req.session.openid && req.session.userInfo){
 		return res.redirect('/wechat/test')
 	}
 
