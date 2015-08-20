@@ -60,7 +60,7 @@ module.exports.index = wechat(wechatConfig,function ( req,res,next ) {
 var client = new OAuth(wechatConfig.appid);
 module.exports.goOauth = function ( req,res,next ) {
 	if(!req.session.openid){
-		var url = client.getAuthorizeURL('/wechat/oauth', 'state', 'snsapi_userinfo');
+		var url = client.getAuthorizeURL('http://weichat.io/wechat/oauth', 'state', 'snsapi_userinfo');
 
 		return res.redirect(url)
 	}
