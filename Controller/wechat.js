@@ -95,6 +95,10 @@ module.exports.oauth = function ( req,res,next ) {
 
 
 		client.getUser(openid, function ( err,result ) {
+			if(err){
+				console.log(err);
+				return res.send(err)
+			}
 			var userInfo = result;
 			console.log(userInfo);
 			res.session.userInfo = userInfo;
