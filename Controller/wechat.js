@@ -82,11 +82,14 @@ module.exports.oauth = function ( req,res,next ) {
 		return res.end('没有授权失败 : ' + req.originalUrl)
 	}
 
+
 	client.getAccessToken(code, function ( err,result ) {
 		var accessToken = result.data.access_token;
 		var openid = result.data.openid;
 		console.log(accessToken);
 		console.log(openid);
+
+		req.session.openid = openid;
 
 		res.send(accessToken);
 		res.send(openid);

@@ -4,7 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var wechat = require('./Controller/wechat');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var Redis = require('ioredis');
@@ -14,6 +13,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var test = require('./routes/test');
 var inter = require('./routes/interface');
+var wechat = require('./routes/wechat');
 
 var redis = new Redis();
 
