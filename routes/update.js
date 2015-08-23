@@ -10,9 +10,9 @@ var shell = require('shelljs');
 router.post('/', function ( req,res,next ) {
 
 	console.log(req);
-	res.send('ok');
+	res.end('ok');
 
-	shell.cs('../');
+	shell.cd('../');
 	shell.exec('git pull');
 	shell.exec('pm2 restart all')
 
