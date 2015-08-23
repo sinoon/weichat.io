@@ -17,6 +17,7 @@ router.post('/', function ( req,res,next ) {
 	var signature = 'sha1' + hmac.digest('hex');
 
 	if(req.headers['x-hub-signature'] != signature){
+		console.log('匹配失败');
 		return res.end()
 	}
 
