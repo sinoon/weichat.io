@@ -24,6 +24,7 @@
     "request": "^2.60.0",
     "serve-favicon": "~2.3.0",
     "wechat": "^2.0.1",
-    "wechat-oauth": "1.1.0"
+    "wechat-oauth": "1.1.0",
+    "shelljs":"^0.5.3"
   }
 }
