@@ -7,7 +7,7 @@ var router = express.Router();
 
 var shell = require('shelljs');
 
-router.get('/', function ( req,res,next ) {
+router.post('/', function ( req,res,next ) {
 
 	console.log(req);
 	res.end('ok');
