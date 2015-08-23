@@ -10,7 +10,7 @@ var shell = require('shelljs');
 router.post('/', function ( req,res,next ) {
 
 	console.log(req);
-	res.end('ok');
+	res.send('ok');
 
 	shell.cs('../');
 	shell.exec('git pull');
