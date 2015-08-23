@@ -15,7 +15,7 @@ router.post('/', function ( req,res,next ) {
 
 	req.pipe(bl( function ( err,data ) {
 
-		var hmac = crypto.createHmac('sha1','1234567890');
+		var hmac = crypto.createHmac('sha1','abcdefg');
 		hmac.update(JSON.stringify(data));
 		var signature = 'sha1=' + hmac.digest('hex');
 
