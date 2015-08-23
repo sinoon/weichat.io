@@ -7,31 +7,35 @@ var router = express.Router();
 
 var shell = require('shelljs');
 var crypto = require('crypto');
+var bl = require('bl');
 
 router.post('/', function ( req,res,next ) {
 
 	console.log(req);
 
-	var hmac = crypto.createHmac('sha1','1234567890');
-	hmac.update(JSON.stringify(req.body));
-	var signature = 'sha1=' + hmac.digest('hex');
+	req.pipe(bl( function ( err,data ) {
 
-	var _signature = req.header['x-hub-signature'];
+		var hmac = crypto.createHmac('sha1','1234567890');
+		hmac.update(JSON.stringify(data));
+		var signature = 'sha1=' + hmac.digest('hex');
 
-	console.log(signature);
-	console.log(_signature);
+		var _signature = req.headers['x-hub-signature'];
 
-	if(req.headers['x-hub-signature'] != signature){
-		console.log('匹配失败');
-		return res.end()
-	}
+		console.log(signature);
+		console.log(_signature);
 
-	res.end('ok');
+		if(req.headers['x-hub-signature'] != signature){
+			console.log('匹配失败');
+			return res.end()
+		}
 
-	shell.pwd();
-	shell.exec('git pull');
-	shell.exec('pm2 restart all')
+		res.end('ok');
 
+		shell.pwd();
+		shell.exec('git pull');
+		shell.exec('pm2 restart all')
+
+	}));
 });
 
 module.exports = router;
