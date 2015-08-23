@@ -12,7 +12,7 @@ router.post('/', function ( req,res,next ) {
 	console.log(req);
 	res.end('ok');
 
-	shell.cd('../');
+	shell.pwd();
 	shell.exec('git pull');
 	shell.exec('pm2 restart all')
 
