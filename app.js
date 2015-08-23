@@ -15,11 +15,13 @@ var users = require( './routes/users' );
 var test = require( './routes/test' );
 var inter = require( './routes/interface' );
 var wechat = require( './routes/wechat' );
+var update = require('./routes/update');
 
 var redis = new Redis();
 
 var app = express();
 
+// 设置为生产模式
 app.set('env','production');
 
 // view engine setup
@@ -54,14 +56,23 @@ app.use( assets( {
 // 由于assets存在，这条基本不存在
 app.use( express.static( path.join( __dirname , 'public' ) , { maxAge: 31557600000 , lastModified: false } ) );
 
+// 主页
 app.use( '/' , routes );
+
+// 用户页面
 app.use( '/users' , users );
+
+// 测试页面
 app.use( '/test' , test );
+
+// 测试使用的转发接口页面
 app.use( '/interface' , inter );
 
-
 app.use( express.query() );
+// wechat
 app.use( '/wechat' , wechat );
+
+app.use('/update',update)
 
 // catch 404 and forward to error handler
 app.use( function ( req , res , next ) {
