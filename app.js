@@ -22,7 +22,7 @@ var redis = new Redis();
 var app = express();
 
 // 设置为生产模式
-app.set('env','production');
+//app.set('env','production');
 
 // view engine setup
 app.set( 'views' , path.join( __dirname , 'views' ) );
