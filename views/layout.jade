@@ -4,14 +4,12 @@ html
     block header
 
     title= title
-    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    != css("bootstrap")
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
 
   body
     block content
 
-    script(src="/javascripts/sea.js")
-    script(src="/javascripts/zepto.js")
-    script(src="/javascripts/Bridge.js")
+    != js("zepto")
 
     block script
