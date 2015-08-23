@@ -33,6 +33,7 @@ app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded( { extended: false } ) );
 app.use( cookieParser() );
 
+// 设置session
 var sessionConfig = {
 	client: redis
 };
@@ -41,6 +42,7 @@ app.use( session( {
 	secret: "I love Mao"
 } ) );
 
+// 设置静态文件
 app.use( assets( {
 	paths: [ 'public/css' , 'public/js' , 'public/img' ],
 	fingerprinting:true,
