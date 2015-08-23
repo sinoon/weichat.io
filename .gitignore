@@ -8,3 +8,6 @@ Test
 
 #mac
 .DS_Store
+
+#build
+/builtAssets
