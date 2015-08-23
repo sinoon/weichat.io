@@ -72,7 +72,7 @@ app.use( express.query() );
 // wechat
 app.use( '/wechat' , wechat );
 
-app.use('/update',update)
+app.use('/update',update);
 
 // catch 404 and forward to error handler
 app.use( function ( req , res , next ) {
