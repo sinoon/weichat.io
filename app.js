@@ -41,7 +41,9 @@ var sessionConfig = {
 };
 app.use( session( {
 	store: new RedisStore( sessionConfig ) ,
-	secret: "I love Mao"
+	secret: "I love Mao",
+	resave:false,
+	saveUninitialized:false
 } ) );
 
 // 设置静态文件
