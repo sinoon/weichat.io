@@ -15,6 +15,7 @@ router.post('/', function ( req,res,next ) {
 
 	var hmac = crypto.createHmac('sha1','abcdefg');
 	hmac.update(JSON.stringify(req.body));
+	console.log(req.body);
 	var signature = 'sha1=' + hmac.digest('hex');
 
 	var _signature = req.headers['x-hub-signature'];
